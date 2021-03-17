@@ -1,6 +1,7 @@
 # PickMe : Draw from a Instagram post
 
 ###### tags: `IG抽獎神器` `抽獎神器` `@update_foodiary`
+![](https://img.shields.io/static/v1?label=MacOS&message=11.2.1&color=red) ![](https://img.shields.io/static/v1?label=python&message=3.8&color=blue) ![](https://img.shields.io/static/v1?label=Selenium&message=3.141.0&color=orange) 
 
 ## Introduction ⭐
 > This repo is for Instagram user to draw the specific comments in the post.
