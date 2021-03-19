@@ -7,24 +7,28 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 import random
 import collections
+import platform
+
 
 class PickMe:
-    def __init__(self,link,keyword,num,repeat):
+    def __init__(self, link, keyword, num, repeat):
         self.link = link
-#         option=webdriver.ChromeOptions()
-#         option.add_argument('headless') # set option
-#         self.driver = webdriver.Chrome("./chromedriver",chrome_options=option) # Call Google Chrome with parameters
-        self.driver = webdriver.Chrome("./chromedriver")
+        if platform.system() == 'Windows':
+            self.driver = webdriver.Edge("./msedgedriver")
+        else:
+            self.driver = webdriver.Chrome("./chromedriver")
         self.keyword = keyword
         self.comments = []
         self.check_comments = []
         self.num = int(num)
-        if repeat == "True": self.repeat = True
-        else : self.repeat = False
-    
+        if repeat == "True":
+            self.repeat = True
+        else:
+            self.repeat = False
+
     def goInstagram(self):
-            self.driver.get('https://www.instagram.com')
-            sleep(2)
+        self.driver.get('https://www.instagram.com')
+        sleep(2)
 
     def login(self):
         user = 'PickMe_ig'
@@ -35,11 +39,10 @@ class PickMe:
         username.send_keys(user)
         password.send_keys(pw)
 
-        loginBtn = self.driver.find_element_by_css_selector('.L3NKy > div:nth-child(1)')
+        loginBtn = self.driver.find_element_by_css_selector(
+            '.L3NKy > div:nth-child(1)')
         loginBtn.click()
         sleep(4)
-
-
 
     def getComment(self):
         self.driver.get(self.link)
@@ -56,28 +59,26 @@ class PickMe:
                 break
         comments = self.driver.find_elements_by_css_selector('.C4VMK')
         i = 0
-        All_comment= []
+        All_comment = []
         for comment in comments:
             if i == 0:
-                i+=1
+                i += 1
                 continue
-#             elif i == 10:
-#                 break
             i += 1
-#             print('{0:4} -> {1}'.format(i, comment.text))
             All_comment.append(comment.text)
-             
+
         return All_comment
-    
+
     def check_repeat(self):
         if not self.comments:
             print("There are no comments in the post !")
             return
-        
+
         dict_repeat = collections.defaultdict(int)
         for comment in self.comments:
             tmp = comment.split('\n')
-            if tmp[1][0] != '@': continue
+            if tmp[1][0] != '@':
+                continue
             tmp_id2 = tmp[1].split(' ')
             id_ = tmp[0] + tmp_id2[0]
             try:
@@ -88,14 +89,14 @@ class PickMe:
                     continue
             except:
                 print(comment)
-                
+
         if self.repeat:
             return
         else:
             tmp_set = set(self.check_comments)
             self.check_comments = list(tmp_set)
-            return 
-    
+            return
+
     def Pick(self):
         nums = random.sample(range(0, len(self.check_comments)), self.num)
         nums.sort()
@@ -104,8 +105,7 @@ class PickMe:
         for i in range(len(self.check_comments)):
             if nums[pos] == i:
                 tmp = self.check_comments[i]
-                pos+=1
+                pos += 1
                 print(tmp)
             if pos == len(nums):
                 break
-
