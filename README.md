@@ -18,7 +18,7 @@
 pip install selenium
 ```
 * How to install Webdriver ?
-  + [Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads) (Suggest)
+  + [Chrome](https://chromedriver.storage.googleapis.com/index.html?path=91.0.4472.19/) (Suggest)
   + [Safari](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
   + [Firefox](https://github.com/mozilla/geckodriver/releases)
   + [Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
