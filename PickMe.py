@@ -88,7 +88,8 @@ class PickMe:
                 else:
                     continue
             except:
-                print(comment)
+                pass
+                # print(comment)
 
         if self.repeat:
             return
