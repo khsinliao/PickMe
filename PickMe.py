@@ -93,7 +93,7 @@ class PickMe:
         return dict_id
 
     def check_repeat(self):
-        print(len(self.comments))
+        #print(len(self.comments))
         if not self.comments:
             print("There are no comments in the post !")
             return
@@ -109,7 +109,7 @@ class PickMe:
                     dict_repeat[id_] += 1
                     self.check_comments.append(tmp[0])
                 else:
-                    print(comment)
+                    #print(comment)
                     continue
             except:
                 pass
